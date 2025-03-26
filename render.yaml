@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: portfolio-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    branch: main
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_NAME
+        value: Portfolio
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FRONTEND_URL
+        sync: false
+
+  - type: web
+    name: portfolio-frontend
+    env: static
+    buildCommand: cd portfolio-frontend && npm install && npm run build
+    staticPublishPath: ./portfolio-frontend/dist
+    branch: main
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: portfolio-backend
+          type: web
+          property: url
+        sync: false

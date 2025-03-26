@@ -1,0 +1,10 @@
+/node_modules
+/vendor
+/.git
+/.github
+/.idea
+/.vscode
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
