@@ -11,3 +11,8 @@ Route::get('/projects/{id}', [ProjectController::class, 'show']);
 
 // Profile routes
 Route::get('/profile', [ProfileController::class, 'index']);
+
+// Health check endpoint for Render
+Route::get('/health', function () {
+  return response()->json(['status' => 'ok']);
+});

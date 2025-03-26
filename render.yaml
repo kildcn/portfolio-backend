@@ -4,24 +4,18 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
     branch: main
-    healthCheckPath: /api/health
+    healthCheckPath: /api/projects # More specific health check
     envVars:
-      - key: APP_NAME
-        value: Portfolio
+      - key: APP_KEY
+        generateValue: true
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
       - key: DB_CONNECTION
         value: sqlite
-      - key: CACHE_DRIVER
-        value: file
-      - key: SESSION_DRIVER
-        value: cookie
-      - key: QUEUE_CONNECTION
-        value: sync
-      - key: FRONTEND_URL
-        value: https://portfolio-frontend.onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://portfolio-frontend.onrender.com # Ensure CORS is properly configured
 
   - type: web
     name: portfolio-frontend

@@ -5,7 +5,7 @@ import App from './App';
 import axios from 'axios';
 
 // Set the base URL for all Axios requests
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || '/api';
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
