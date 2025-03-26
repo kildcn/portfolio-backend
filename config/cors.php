@@ -22,7 +22,7 @@ return [
     'allowed_origins' => [
     'http://localhost:3000',
     'http://localhost:5173',
-    'https://portfolio-frontend.onrender.com'
+    'https://portfolio-frontend-6u0z.onrender.com'
 ],
 
     'allowed_origins_patterns' => [],
