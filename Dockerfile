@@ -35,39 +35,33 @@ WORKDIR /var/www/html
 # Copy existing application directory
 COPY . .
 
+# Create the .env file from example if it doesn't exist
+RUN cp -n .env.example .env || true
+
 # Install dependencies
 RUN composer install --no-interaction --optimize-autoloader
-
-# Generate application key if not set
-RUN php artisan key:generate --force
 
 # Create SQLite database
 RUN touch database/database.sqlite && \
     chown -R www-data:www-data database/database.sqlite
 
-# Run migrations and seeders
-RUN php artisan migrate --force && \
-    php artisan db:seed --force
-
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Create symbolic links for logs
-RUN ln -sf /dev/stdout /var/log/apache2/access.log \
-    && ln -sf /dev/stderr /var/log/apache2/error.log
-
-# Enable Apache modules
-RUN a2enmod rewrite headers
-
 # Update Apache configuration
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Create storage link
-RUN php artisan storage:link
+# Configure Apache
+RUN a2enmod rewrite
 
 # Expose port 80
 EXPOSE 80
 
+# Start script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Start Apache
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
