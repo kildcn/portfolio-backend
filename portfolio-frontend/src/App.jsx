@@ -6,7 +6,6 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Loader from './components/Loader';
 
 function App() {
   const [profile, setProfile] = useState(null);
@@ -15,6 +14,7 @@ function App() {
   const [error, setError] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
+  // Setup dark mode
   useEffect(() => {
     // Check user preference for dark mode
     if (localStorage.theme === 'dark' ||
@@ -46,7 +46,31 @@ function App() {
 
         // Fetch profile data
         const profileResponse = await axios.get('/api/profile');
-        setProfile(profileResponse.data);
+        // If profile data doesn't exist or is incomplete, use the default profile
+        let profileData = profileResponse.data;
+
+        if (!profileData || !profileData.name) {
+          profileData = {
+            name: "Killian Le Doucen",
+            title: "Backend Developer",
+            bio: "Passionate backend developer specializing in Ruby on Rails, PHP, Kotlin and Go for building scalable RESTful web services and web applications. Strong problem-solving skills with experience in implementing business logic, optimizing backend performance, and contributing to Agile projects.",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E03AQFJg-5aIPzE9Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1729774040953?e=1748476800&v=beta&t=NQn45hQJcF3y7oF7d0_LlT6Y3eXt4Hec4eY79HcadAk",
+            email: "killian.le-doucen@email.com",
+            github: "https://github.com/kildcn",
+            linkedin: "https://linkedin.com/in/killian-le-doucen-40382a253/",
+            twitter: null,
+            skills: {
+              'Languages': ['German (B1)'],
+              'Programming': ['Ruby on Rails', 'PHP', 'Go', 'Kotlin'],
+              'Backend': ['RESTful APIs', 'Backend services', 'Agile methodologies', 'Cloud integration'],
+              'Data': ['Data structure / SQL', 'PostgreSQL'],
+              'Other': ['Version control', 'Documentation', 'Continuous learning']
+            },
+            resume_url: null
+          };
+        }
+
+        setProfile(profileData);
 
         // Fetch projects data
         const projectsResponse = await axios.get('/api/projects');
@@ -64,7 +88,11 @@ function App() {
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 dark:border-indigo-400"></div>
+      </div>
+    );
   }
 
   if (error) {

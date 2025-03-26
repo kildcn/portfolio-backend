@@ -22,7 +22,7 @@ class ProfileSeeder extends Seeder
         'linkedin' => 'https://linkedin.com/in/killian-le-doucen-40382a253/',
         'twitter' => null,
         'skills' => [
-            'Languages' => ['German (B1)'],
+            'Languages' => ['English (native)','French (native)','German (B1)'],
             'Programming' => ['Ruby on Rails', 'PHP', 'Go', 'Kotlin'],
             'Backend' => ['RESTful APIs', 'Backend services', 'Agile methodologies', 'Cloud integration'],
             'Data' => ['Data structure / SQL', 'PostgreSQL'],
