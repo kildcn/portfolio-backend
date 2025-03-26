@@ -21,7 +21,7 @@ services:
       - key: QUEUE_CONNECTION
         value: sync
       - key: FRONTEND_URL
-        sync: false
+        value: https://portfolio-frontend.onrender.com
 
   - type: web
     name: portfolio-frontend
@@ -31,8 +31,4 @@ services:
     branch: main
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: portfolio-backend
-          type: web
-          property: url
-        sync: false
+        value: https://portfolio-backend.onrender.com/api
