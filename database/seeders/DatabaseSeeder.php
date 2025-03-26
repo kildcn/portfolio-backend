@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Add this line to call the ProfileSeeder
+        // Call the ProfileSeeder
         $this->call(ProfileSeeder::class);
 
         // Create sample projects
         $projects = [
-            // Your projects array here
+          // Your projects array here
         ];
 
         foreach ($projects as $project) {
