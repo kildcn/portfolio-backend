@@ -6,6 +6,7 @@ const Projects = ({ projects }) => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [categories, setCategories] = useState(['all']);
   const [featuredProjects, setFeaturedProjects] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (projects && projects.length > 0) {
@@ -19,16 +20,26 @@ const Projects = ({ projects }) => {
 
       // Apply initial filtering
       filterProjects('all');
+
+      // Add a small delay for animation purposes
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 300);
     }
   }, [projects]);
 
   const filterProjects = (category) => {
     setSelectedCategory(category);
-    if (category === 'all') {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(projects.filter(project => project.category === category));
-    }
+    setIsLoaded(false);
+
+    setTimeout(() => {
+      if (category === 'all') {
+        setFilteredProjects(projects);
+      } else {
+        setFilteredProjects(projects.filter(project => project.category === category));
+      }
+      setIsLoaded(true);
+    }, 300);
   };
 
   if (!projects || projects.length === 0) {
@@ -52,13 +63,15 @@ const Projects = ({ projects }) => {
     <section id="projects" className="py-24 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 mb-3">
-            My Work
-          </span>
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+          <div className="inline-block">
+            <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 mb-3">
+              My Work
+            </span>
+            <div className="mt-1 h-1 w-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
             Featured Projects
           </h2>
-          <div className="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mt-4 mb-8 rounded-full"></div>
           <p className="max-w-3xl mx-auto text-xl text-gray-500 dark:text-gray-300">
             Check out some of my recent work that showcases my skills and experience.
           </p>
@@ -66,8 +79,14 @@ const Projects = ({ projects }) => {
 
         {/* Featured projects showcase */}
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} featured={true} />
+          {featuredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`transition-all duration-500 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              <ProjectCard project={project} featured={true} />
+            </div>
           ))}
         </div>
 
@@ -78,15 +97,15 @@ const Projects = ({ projects }) => {
           </h3>
 
           {/* Category filter */}
-          <div className="flex flex-wrap justify-center mb-12 gap-2">
+          <div className="flex flex-wrap justify-center mb-12 gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => filterProjects(category)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600'
+                    ? 'bg-indigo-600 text-white shadow-md transform scale-105'
+                    : 'bg-white text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 hover:scale-105'
                 }`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -96,13 +115,19 @@ const Projects = ({ projects }) => {
 
           {/* Project grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {filteredProjects.map((project, index) => (
+              <div
+                key={project.id}
+                className={`transition-all duration-500 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <ProjectCard project={project} />
+              </div>
             ))}
           </div>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
+          {filteredProjects.length === 0 && isLoaded && (
+            <div className="text-center py-12 transition-opacity duration-500 opacity-100">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No projects found in this category.
               </p>
