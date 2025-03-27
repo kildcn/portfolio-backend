@@ -22,9 +22,63 @@ class DatabaseSeeder extends Seeder
         // Call the ProfileSeeder
         $this->call(ProfileSeeder::class);
 
-        // Create sample projects
+        // Create real projects
         $projects = [
-          // Your projects array here
+            [
+                'name' => 'Avikan',
+                'description' => 'A gamified bird recognition application that helps users identify, catalog, and track birds they spot in the wild. Leveraging machine learning for bird identification, Avikan turns birdwatching into an engaging adventure with experience points, badges, and a community leaderboard.',
+                'image_path' => 'https://i.postimg.cc/CSnvbwNH/birdpin.png',
+                'category' => 'fullstack',
+                'technologies' => ['Ruby on Rails', 'PostgreSQL', 'Bootstrap', 'Stimulus.js', 'Mapbox GL', 'Cloudinary', 'Devise'],
+                'github_url' => 'https://github.com/kildcn/Avikan',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 1
+            ],
+            [
+                'name' => 'Job Catcher',
+                'description' => 'A job analysis platform with a job search engine, filters, and an analysis dashboard to see most demanded skills, proportion of junior, mid and senior level positions, average salaries, and more.',
+                'image_path' => 'https://i.postimg.cc/wBjX15qz/Screenshot-2025-03-27-at-22-16-55.png',
+                'category' => 'fullstack',
+                'technologies' => ['PHP', 'Laravel', 'React', 'PostgreSQL', 'API Integration', 'Data Analysis'],
+                'github_url' => 'https://github.com/kildcn/job-catcher',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 2
+            ],
+            [
+                'name' => 'Souk Machine',
+                'description' => 'An online directory where people capture the visual and auditive experience of going to a market, from anywhere in the world. It is a digital mosaic that celebrates the vibrant, chaotic, and sensory-rich environments of markets globally through video and audio recordings.',
+                'image_path' => 'https://i.postimg.cc/6p0V6bNz/vegetable-copy.png',
+                'category' => 'fullstack',
+                'technologies' => ['Ruby on Rails', 'PostgreSQL', 'Cloudinary', 'Map Integration', 'CRUD Operations'],
+                'github_url' => 'https://github.com/kildcn/Souk-Machine',
+                'live_url' => 'https://soukmachine-92aad94b7dd6.herokuapp.com/',
+                'featured' => true,
+                'display_order' => 3
+            ],
+            [
+                'name' => 'Baby Clothing Marketplace',
+                'description' => 'A clothing marketplace where users can post clothing items for sale, browse, search, purchase items, with a messaging system between buyer and seller, order status, stock checking, and shipping information.',
+                'image_path' => 'https://i.postimg.cc/7Ltg0Ch2/Screenshot-2025-03-27-at-22-29-23.png',
+                'category' => 'fullstack',
+                'technologies' => ['Go', 'React', 'SQL', 'RESTful API', 'User Authentication'],
+                'github_url' => 'https://github.com/kildcn/Baby-Clothing-Marketplace',
+                'live_url' => null,
+                'featured' => false,
+                'display_order' => 4
+            ],
+            [
+                'name' => 'Portfolio Website',
+                'description' => 'My personal portfolio website built with Laravel and React to showcase my projects and skills as a developer.',
+                'image_path' => 'https://i.postimg.cc/9MvZgvGX/Screenshot-2025-03-27-at-22-35-00.png',
+                'category' => 'fullstack',
+                'technologies' => ['Laravel', 'React', 'Tailwind CSS', 'Vite', 'Responsive Design'],
+                'github_url' => 'https://github.com/kildcn/portfolio-backend',
+                'live_url' => 'https://portfolio-frontend-6u0z.onrender.com/',
+                'featured' => true,
+                'display_order' => 5
+            ],
         ];
 
         foreach ($projects as $project) {
