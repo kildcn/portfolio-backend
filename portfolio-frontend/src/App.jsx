@@ -90,7 +90,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen w-full bg-white dark:bg-gray-900">
         <div className="loader">
           <div className="circle"></div>
           <div className="circle"></div>
@@ -103,17 +103,17 @@ function App() {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen w-full bg-white dark:bg-gray-900">
         <div className="text-red-500 text-xl">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
       <CustomCursor />
       <Header profile={profile} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main>
+      <main className="w-full">
         <Hero profile={profile} />
         <About profile={profile} />
         <Projects projects={projects} />
@@ -173,6 +173,17 @@ function App() {
         /* Smooth scrolling */
         html {
           scroll-behavior: smooth;
+          width: 100%;
+          overflow-x: hidden;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          width: 100%;
+          overflow-x: hidden;
+          margin: 0;
+          padding: 0;
         }
 
         /* Button hover effects */
