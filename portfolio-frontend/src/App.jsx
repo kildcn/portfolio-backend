@@ -6,6 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [profile, setProfile] = useState(null);
@@ -90,7 +91,12 @@ function App() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 dark:border-indigo-400"></div>
+        <div className="loader">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
       </div>
     );
   }
@@ -105,6 +111,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <CustomCursor />
       <Header profile={profile} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Hero profile={profile} />
@@ -113,6 +120,113 @@ function App() {
         <Contact profile={profile} />
       </main>
       <Footer profile={profile} />
+
+      {/* Global animations CSS */}
+      <style jsx global>{`
+        /* Enhanced loader animation */
+        .loader {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .loader .circle {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: #4f46e5;
+          animation: loader 1.5s ease-in-out infinite;
+        }
+
+        .dark .loader .circle {
+          background-color: #6366f1;
+        }
+
+        .loader .circle:nth-child(1) {
+          animation-delay: 0s;
+        }
+
+        .loader .circle:nth-child(2) {
+          animation-delay: 0.15s;
+        }
+
+        .loader .circle:nth-child(3) {
+          animation-delay: 0.3s;
+        }
+
+        .loader .circle:nth-child(4) {
+          animation-delay: 0.45s;
+        }
+
+        @keyframes loader {
+          0%, 100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          50% {
+            transform: translateY(-15px);
+            opacity: 0.5;
+          }
+        }
+
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Button hover effects */
+        button, a {
+          transition: all 0.3s ease;
+        }
+
+        /* Image hover effects */
+        img {
+          transition: transform 0.5s ease;
+        }
+
+        /* Animate on scroll transitions */
+        .transition-all {
+          transition-property: all;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom selection styling */
+        ::selection {
+          background: rgba(99, 102, 241, 0.3);
+          color: inherit;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+          background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: #c7c7c7;
+          border-radius: 5px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+          background: #4b5563;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: #a0a0a0;
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+          background: #6b7280;
+        }
+      `}</style>
     </div>
   );
 }
