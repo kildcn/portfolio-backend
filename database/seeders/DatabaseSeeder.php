@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Avikan',
                 'description' => 'A gamified bird recognition application that helps users identify, catalog, and track birds they spot in the wild. Leveraging machine learning for bird identification, Avikan turns birdwatching into an engaging adventure with experience points, badges, and a community leaderboard.',
-                'image_path' => 'https://i.postimg.cc/CSnvbwNH/birdpin.png',
+                'image_path' => 'https://i.postimg.cc/M6NMc1PL/Screenshot-2025-03-29-at-12-46-16.png',
                 'category' => 'fullstack',
                 'technologies' => ['Ruby on Rails', 'PostgreSQL', 'Bootstrap', 'Stimulus.js', 'Mapbox GL', 'Cloudinary', 'Devise'],
                 'github_url' => 'https://github.com/kildcn/Avikan',
@@ -49,13 +49,24 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Souk Machine',
                 'description' => 'An online directory where people capture the visual and auditive experience of going to a market, from anywhere in the world. It is a digital mosaic that celebrates the vibrant, chaotic, and sensory-rich environments of markets globally through video and audio recordings.',
-                'image_path' => 'https://i.postimg.cc/6p0V6bNz/vegetable-copy.png',
+                'image_path' => 'https://i.postimg.cc/SkK7YGxZ/Screenshot-2025-03-29-at-12-02-42.png',
                 'category' => 'fullstack',
                 'technologies' => ['Ruby on Rails', 'PostgreSQL', 'Cloudinary', 'Map Integration', 'CRUD Operations'],
                 'github_url' => 'https://github.com/kildcn/Souk-Machine',
                 'live_url' => 'https://soukmachine-92aad94b7dd6.herokuapp.com/',
                 'featured' => true,
                 'display_order' => 3
+            ],
+            [
+                'name' => 'Delivery Order Price Calculator',
+                'description' => 'A backend service that calculates the total price and price breakdown of a delivery order. It integrates with an external API to fetch venue-related data required for the calculations. The service considers factors such as delivery distance, cart value, base delivery fees, distance-based surcharges, minimum order values, and maximum delivery ranges.',
+                'image_path' => 'https://recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/001/539/original/vertical-gradle.png?1638521007',
+                'category' => 'backend',
+                'technologies' => ['Java', 'Spring Boot', 'RESTful API', 'Gradle', 'JUnit', 'API Integration'],
+                'github_url' => 'https://github.com/kildcn/Delivery-Order-Price-Calculator',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 4
             ],
             [
                 'name' => 'Baby Clothing Marketplace',
@@ -66,7 +77,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Baby-Clothing-Marketplace',
                 'live_url' => null,
                 'featured' => false,
-                'display_order' => 4
+                'display_order' => 5
             ],
             [
                 'name' => 'Portfolio Website',
@@ -76,8 +87,8 @@ class DatabaseSeeder extends Seeder
                 'technologies' => ['Laravel', 'React', 'Tailwind CSS', 'Vite', 'Responsive Design'],
                 'github_url' => 'https://github.com/kildcn/portfolio-backend',
                 'live_url' => 'https://portfolio-frontend-6u0z.onrender.com/',
-                'featured' => true,
-                'display_order' => 5
+                'featured' => false,
+                'display_order' => 6
             ],
         ];
 
