@@ -1,66 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Portfolio Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, responsive portfolio website built with Laravel and React to showcase my projects and skills as a developer.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Modern UI/UX**: Clean interface with dark/light mode toggle
+- **Responsive Design**: Optimized for all screen sizes from mobile to desktop
+- **Project Showcase**: Gallery of projects with detailed information
+- **Skills & Profile**: Comprehensive display of technical skills and background
+- **Contact Form**: Easy way for visitors to get in touch
+- **API-Driven Architecture**: Frontend and backend separation for scalability
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Technology Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Backend
+- **Laravel 12**: PHP framework for robust APIs and backend functionality
+- **SQLite**: Lightweight database for storing portfolio data
+- **RESTful API**: Clean API design for frontend consumption
 
-## Learning Laravel
+### Frontend
+- **React**: JavaScript library for building dynamic user interfaces
+- **Tailwind CSS**: Utility-first CSS framework for modern designs
+- **Vite**: Next-generation frontend build tool
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Deployment
+- **Render**: Cloud platform for deployment
+- **Docker**: Containerization for consistent environments
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📋 Project Structure
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
+├── app/                     # Laravel backend application
+│   ├── Http/Controllers/    # API controllers
+│   ├── Models/              # Database models
+├── database/                # Database migrations and seeders
+├── portfolio-frontend/      # React frontend application
+│   ├── src/                 # Frontend source code
+│   │   ├── components/      # React components
+│   │   ├── App.jsx          # Main React application
+├── public/                  # Public assets
+├── routes/                  # API routes
+```
 
-## Laravel Sponsors
+## 🚦 Getting Started
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prerequisites
+- PHP 8.2+
+- Composer
+- Node.js & npm
 
-### Premium Partners
+### Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kildcn/portfolio-backend.git
+   cd portfolio-backend
+   ```
 
-## Contributing
+2. Install backend dependencies:
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Code of Conduct
+4. Run database migrations and seeders:
+   ```bash
+   touch database/database.sqlite
+   php artisan migrate --seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. Install frontend dependencies:
+   ```bash
+   cd portfolio-frontend
+   npm install
+   ```
 
-## Security Vulnerabilities
+### Running Locally
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Start the Laravel server:
+   ```bash
+   php artisan serve
+   ```
 
-## License
+2. In a separate terminal, start the React development server:
+   ```bash
+   cd portfolio-frontend
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. Access the application:
+   - Backend API: `http://localhost:8000`
+   - Frontend: `http://localhost:5173`
+
+## 🔄 API Endpoints
+
+- `GET /api/projects`: Get all projects
+- `GET /api/projects/{id}`: Get a specific project
+- `GET /api/profile`: Get profile information
+
+## 🌐 Deployment
+
+The project is deployed using Render with a multi-service setup:
+
+1. **Backend API**: Dockerized Laravel application
+2. **Frontend**: Static site built with Vite and served by Render
+
+For deployment instructions, see `render.yaml` in the repository.
+
+## 📊 Project Data Model
+
+### Profile
+Stores personal information, skills, and contact details.
+
+### Projects
+Stores information about projects including:
+- Name
+- Description
+- Technologies used
+- GitHub URL
+- Live URL
+- Featured status
+- Category
+- Display order
+
+## 🎨 Customization
+
+To customize the portfolio:
+
+1. Update database seeders in `database/seeders/`
+2. Modify React components in `portfolio-frontend/src/components/`
+3. Adjust tailwind styling in the frontend directory
+
+## 🔧 Future Improvements
+
+- Add authentication for admin dashboard
+- Implement project filtering by technology
+- Add blog functionality
+- Implement contact form email functionality
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+## 👨‍💻 Author
+
+- Killian Le Doucen
+- GitHub: [@kildcn](https://github.com/kildcn)
+- LinkedIn: [Killian Le Doucen](https://linkedin.com/in/killian-le-doucen-40382a253/)
+
+---
+
+Built with ❤️ using Laravel and React
