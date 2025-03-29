@@ -7,37 +7,37 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import MouseSprite from './components/MouseSprite'; // Import the MouseSprite component
+import CodeRain from './components/CodeRain';
 
 function App() {
   const [profile, setProfile] = useState(null);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
 
-  // Setup dark mode
+  // Check for first visit
   useEffect(() => {
-    // Check user preference for dark mode
-    if (localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
-         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setDarkMode(true);
-      document.documentElement.classList.add('dark');
+    // Apply dark mode - now permanently enabled
+    document.documentElement.classList.add('dark');
+
+    // Check if this is the first visit
+    const hasVisitedBefore = localStorage.getItem('hasVisited');
+    if (hasVisitedBefore) {
+      setIsFirstVisit(false);
+      setShowContent(true); // Skip animation for returning visitors
     } else {
-      setDarkMode(false);
-      document.documentElement.classList.remove('dark');
+      setShowAnimation(true); // Show animation for first-time visitors
     }
   }, []);
 
-  const toggleDarkMode = () => {
-    if (darkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    }
-    setDarkMode(!darkMode);
+  // Function to replay the animation
+  const replayAnimation = () => {
+    setShowContent(false);
+    setShowAnimation(true);
   };
 
   useEffect(() => {
@@ -88,9 +88,22 @@ function App() {
     fetchData();
   }, []);
 
-  if (loading) {
+  // Function to handle animation completion
+  const handleAnimationComplete = () => {
+    setShowAnimation(false);
+    setShowContent(true);
+
+    // Set flag for returning visitors if this is the first visit
+    if (isFirstVisit) {
+      localStorage.setItem('hasVisited', 'true');
+      setIsFirstVisit(false);
+    }
+  };
+
+  // Show loading spinner only if we're not showing the animation and content is still loading
+  if (loading && !showAnimation && !showContent) {
     return (
-      <div className="flex items-center justify-center min-h-screen w-full bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen w-full bg-gray-900">
         <div className="loader">
           <div className="circle"></div>
           <div className="circle"></div>
@@ -101,25 +114,42 @@ function App() {
     );
   }
 
-  if (error) {
+  // Show error message if there's an error and we're not showing the animation
+  if (error && !showAnimation) {
     return (
-      <div className="flex items-center justify-center min-h-screen w-full bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen w-full bg-gray-900">
         <div className="text-red-500 text-xl">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
-      <CustomCursor />
-      <Header profile={profile} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="w-full">
-        <Hero profile={profile} />
-        <About profile={profile} />
-        <Projects projects={projects} />
-        <Contact profile={profile} />
-      </main>
-      <Footer profile={profile} />
+    <div className="min-h-screen w-full overflow-x-hidden bg-gray-900 transition-colors duration-300">
+      {/* Show code rain animation when triggered */}
+      {showAnimation && (
+        <CodeRain onAnimationComplete={handleAnimationComplete} />
+      )}
+
+      {/* Main content */}
+      <div
+        className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
+        style={{ pointerEvents: showContent ? 'auto' : 'none' }}
+      >
+        <MouseSprite /> {/* Add the MouseSprite component */}
+        <CustomCursor />
+        <Header
+          profile={profile}
+          replayAnimation={replayAnimation}
+          showReplayButton={true}
+        />
+        <main className="w-full">
+          <Hero profile={profile} />
+          <About profile={profile} />
+          <Projects projects={projects} />
+          <Contact profile={profile} />
+        </main>
+        <Footer profile={profile} />
+      </div>
 
       {/* Global animations CSS */}
       <style jsx global>{`
@@ -127,7 +157,7 @@ function App() {
         .loader {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-center;
           gap: 8px;
         }
 
@@ -135,12 +165,8 @@ function App() {
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background-color: #4f46e5;
-          animation: loader 1.5s ease-in-out infinite;
-        }
-
-        .dark .loader .circle {
           background-color: #6366f1;
+          animation: loader 1.5s ease-in-out infinite;
         }
 
         .loader .circle:nth-child(1) {
@@ -214,27 +240,15 @@ function App() {
         }
 
         ::-webkit-scrollbar-track {
-          background: #f1f1f1;
-        }
-
-        .dark ::-webkit-scrollbar-track {
           background: #1f2937;
         }
 
         ::-webkit-scrollbar-thumb {
-          background: #c7c7c7;
+          background: #4b5563;
           border-radius: 5px;
         }
 
-        .dark ::-webkit-scrollbar-thumb {
-          background: #4b5563;
-        }
-
         ::-webkit-scrollbar-thumb:hover {
-          background: #a0a0a0;
-        }
-
-        .dark ::-webkit-scrollbar-thumb:hover {
           background: #6b7280;
         }
       `}</style>
