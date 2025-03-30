@@ -25,6 +25,17 @@ class DatabaseSeeder extends Seeder
         // Create real projects
         $projects = [
             [
+                'name' => 'Le Doucen Avocats',
+                'description' => 'Site web officiel du Cabinet Le Doucen Avocats, un cabinet d\'avocats basé à Rodez (Aveyron) depuis 1972. Développé avec React et Vite, utilisant TailwindCSS pour le style. Le site présente les services, l\'équipe et les coordonnées du cabinet.',
+                'image_path' => 'https://i.postimg.cc/4ZXzG67x/Screenshot-2025-03-30-at-21-10-20.png',
+                'category' => 'frontend',
+                'technologies' => ['React', 'Vite', 'TailwindCSS', 'ESLint', 'CSS Animation'],
+                'github_url' => 'https://github.com/kildcn/ledoucen-avocats/',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 1
+            ],
+            [
                 'name' => 'Avikan',
                 'description' => 'A gamified bird recognition application that helps users identify, catalog, and track birds they spot in the wild. Leveraging machine learning for bird identification, Avikan turns birdwatching into an engaging adventure with experience points, badges, and a community leaderboard.',
                 'image_path' => 'https://i.postimg.cc/M6NMc1PL/Screenshot-2025-03-29-at-12-46-16.png',
@@ -33,7 +44,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Avikan',
                 'live_url' => null,
                 'featured' => true,
-                'display_order' => 1
+                'display_order' => 2
             ],
             [
                 'name' => 'Job Catcher',
@@ -44,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/job-catcher',
                 'live_url' => null,
                 'featured' => true,
-                'display_order' => 2
+                'display_order' => 3
             ],
             [
                 'name' => 'Souk Machine',
@@ -55,7 +66,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Souk-Machine',
                 'live_url' => 'https://soukmachine-92aad94b7dd6.herokuapp.com/',
                 'featured' => true,
-                'display_order' => 3
+                'display_order' => 4
             ],
             [
                 'name' => 'Delivery Order Price Calculator',
@@ -66,7 +77,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Delivery-Order-Price-Calculator',
                 'live_url' => null,
                 'featured' => true,
-                'display_order' => 4
+                'display_order' => 5
             ],
             [
                 'name' => 'Baby Clothing Marketplace',
@@ -77,7 +88,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Baby-Clothing-Marketplace',
                 'live_url' => null,
                 'featured' => false,
-                'display_order' => 5
+                'display_order' => 6
             ],
             [
                 'name' => 'Portfolio Website',
@@ -88,12 +99,19 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/portfolio-backend',
                 'live_url' => 'https://portfolio-frontend-6u0z.onrender.com/',
                 'featured' => false,
-                'display_order' => 6
+                'display_order' => 7
             ],
         ];
 
-        foreach ($projects as $project) {
-            Project::create($project);
+        // Clear existing projects (optional)
+        // Project::truncate();
+
+        // Create projects only if they don't exist by name
+        foreach ($projects as $projectData) {
+            Project::updateOrCreate(
+                ['name' => $projectData['name']],
+                $projectData
+            );
         }
     }
 }
