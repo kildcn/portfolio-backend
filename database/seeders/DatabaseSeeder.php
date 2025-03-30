@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'category' => 'frontend',
                 'technologies' => ['React', 'Vite', 'TailwindCSS', 'ESLint', 'CSS Animation'],
                 'github_url' => 'https://github.com/kildcn/ledoucen-avocats/',
-                'live_url' => null,
+                'live_url' => 'https://ledoucen-avocats.onrender.com/',
                 'featured' => true,
                 'display_order' => 1
             ],
@@ -103,10 +103,7 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        // Clear existing projects (optional)
-        // Project::truncate();
-
-        // Create projects only if they don't exist by name
+        // Create projects only if they don't exist by name, or update them if they do exist
         foreach ($projects as $projectData) {
             Project::updateOrCreate(
                 ['name' => $projectData['name']],
