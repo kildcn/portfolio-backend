@@ -101,6 +101,51 @@ class DatabaseSeeder extends Seeder
                 'featured' => false,
                 'display_order' => 7
             ],
+            // New projects from paste.txt
+            [
+                'name' => 'Restaurant Booking System',
+                'description' => 'A comprehensive backend API for restaurant table management and reservation system, featuring user management with multi-level access, table management for different capacities and sections, automated reservation system, customizable restaurant settings, real-time availability checking, and a well-structured RESTful API.',
+                'image_path' => 'https://i.ibb.co/21qqBY0X/Screenshot-2025-04-25-at-12-43-55.png',
+                'category' => 'backend',
+                'technologies' => ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'bcryptjs', 'moment', 'React'],
+                'github_url' => 'https://github.com/kildcn/restaurant-booking-system',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 8
+            ],
+            [
+                'name' => 'Birthday Paradox Simulator',
+                'description' => 'An interactive React application that demonstrates the fascinating Birthday Paradox, showcasing both classic day-only matches and exact birthday (day + year) probabilities with interactive simulation, detailed visualization, and responsive design.',
+                'image_path' => 'https://i.ibb.co/JwtTgVn5/Screenshot-2025-04-25-at-13-05-24.png',
+                'category' => 'frontend',
+                'technologies' => ['React 19.1.0', 'Lucide React', 'CSS-in-JS'],
+                'github_url' => 'https://github.com/kildcn/birthday-paradox',
+                'live_url' => 'https://birthday-paradox.onrender.com/',
+                'featured' => true,
+                'display_order' => 9
+            ],
+            [
+                'name' => 'Warehouse Management System',
+                'description' => 'A modern Warehouse Management System built with Kotlin and Spring Boot for the backend, and React for the frontend, providing a robust solution for managing warehouse operations including product management, order processing, inventory control, warehouse organization, and real-time notifications.',
+                'image_path' => 'https://i.ibb.co/pj3KfFDD/Screenshot-2025-04-25-at-13-08-31.png',
+                'category' => 'fullstack',
+                'technologies' => ['Kotlin 2.1.x', 'Spring Boot 3.1.x', 'H2 Database', 'PostgreSQL', 'Gradle', 'React 19.x', 'Tailwind CSS', 'Recharts', 'Lucide React'],
+                'github_url' => 'https://github.com/kildcn/wms-platform',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 10
+            ],
+            [
+                'name' => 'German Learning App',
+                'description' => 'A language learning application focused on German, with AI-generated practice content and comprehensive learning tools including content based on CEFR levels, level tracking system, personal lexicon, multiple quiz generations, and score tracking.',
+                'image_path' => 'https://i.ibb.co/TM1XDFFL/Screenshot-2025-04-25-at-13-16-03.png',
+                'category' => 'fullstack',
+                'technologies' => ['React', 'PHP Laravel', 'AI Integration'],
+                'github_url' => 'https://github.com/kildcn/language-learning-app',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 11
+            ]
         ];
 
         // Create projects only if they don't exist by name, or update them if they do exist
