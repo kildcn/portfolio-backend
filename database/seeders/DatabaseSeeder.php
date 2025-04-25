@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Call the ProfileSeeder
+        // Call the modified ProfileSeeder with updated resume link
         $this->call(ProfileSeeder::class);
 
         // Create real projects
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/ledoucen-avocats/',
                 'live_url' => 'https://ledoucen-avocats.onrender.com/',
                 'featured' => true,
-                'display_order' => 1
+                'display_order' => 3
             ],
             [
                 'name' => 'Avikan',
@@ -54,8 +54,8 @@ class DatabaseSeeder extends Seeder
                 'technologies' => ['PHP', 'Laravel', 'React', 'PostgreSQL', 'API Integration', 'Data Analysis'],
                 'github_url' => 'https://github.com/kildcn/job-catcher',
                 'live_url' => null,
-                'featured' => true,
-                'display_order' => 3
+                'featured' => false,
+                'display_order' => 11
             ],
             [
                 'name' => 'Souk Machine',
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Delivery-Order-Price-Calculator',
                 'live_url' => null,
                 'featured' => true,
-                'display_order' => 5
+                'display_order' => 1
             ],
             [
                 'name' => 'Baby Clothing Marketplace',
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/Baby-Clothing-Marketplace',
                 'live_url' => null,
                 'featured' => false,
-                'display_order' => 6
+                'display_order' => 7
             ],
             [
                 'name' => 'Portfolio Website',
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/portfolio-backend',
                 'live_url' => 'https://portfolio-frontend-6u0z.onrender.com/',
                 'featured' => false,
-                'display_order' => 7
+                'display_order' => 6
             ],
             // New projects from paste.txt
             [
@@ -110,8 +110,8 @@ class DatabaseSeeder extends Seeder
                 'technologies' => ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'bcryptjs', 'moment', 'React'],
                 'github_url' => 'https://github.com/kildcn/restaurant-booking-system',
                 'live_url' => null,
-                'featured' => true,
-                'display_order' => 8
+                'featured' => false,
+                'display_order' => 5
             ],
             [
                 'name' => 'Birthday Paradox Simulator',
@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
                 'github_url' => 'https://github.com/kildcn/language-learning-app',
                 'live_url' => null,
                 'featured' => true,
-                'display_order' => 11
+                'display_order' => 8
             ]
         ];
 

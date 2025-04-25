@@ -29,7 +29,7 @@ class ProfileSeeder extends Seeder
             'Data' => ['Data structure / SQL', 'PostgreSQL'],
             'Other' => ['Version control', 'Documentation', 'Continuous learning']
         ],
-        'resume_url' => 'https://publuu.com/flip-book/832764/1830333',
+        'resume_url' => 'https://acrobat.adobe.com/id/urn:aaid:sc:EU:435ef713-9217-4fbb-8194-eb7b6d9b14c8',
     ]);
     }
 }
