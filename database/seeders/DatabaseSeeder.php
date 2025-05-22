@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Delivery Order Price Calculator',
                 'description' => 'A backend service that calculates the total price and price breakdown of a delivery order. It integrates with an external API to fetch venue-related data required for the calculations. The service considers factors such as delivery distance, cart value, base delivery fees, distance-based surcharges, minimum order values, and maximum delivery ranges.',
-                'image_path' => 'https://recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/001/539/original/vertical-gradle.png?1638521007',
+                'image_path' => 'https://i.ibb.co/gYW9KjL/Screenshot-2025-05-22-at-16-24-54.png',
                 'category' => 'backend',
                 'technologies' => ['Java', 'Spring Boot', 'RESTful API', 'Gradle', 'JUnit', 'API Integration'],
                 'github_url' => 'https://github.com/kildcn/Delivery-Order-Price-Calculator',
@@ -101,7 +101,6 @@ class DatabaseSeeder extends Seeder
                 'featured' => false,
                 'display_order' => 6
             ],
-            // New projects from paste.txt
             [
                 'name' => 'Restaurant Booking System',
                 'description' => 'A comprehensive backend API for restaurant table management and reservation system, featuring user management with multi-level access, table management for different capacities and sections, automated reservation system, customizable restaurant settings, real-time availability checking, and a well-structured RESTful API.',
@@ -145,6 +144,17 @@ class DatabaseSeeder extends Seeder
                 'live_url' => null,
                 'featured' => true,
                 'display_order' => 8
+            ],
+            [
+                'name' => 'Tasc - Household Task Management System',
+                'description' => 'A modern, full-stack web application for managing household tasks, built with Laravel and designed for collaborative family management. Features multi-tenant household system, advanced task management with priority levels and difficulty scoring, gamification engine with points and achievements, real-time analytics with performance metrics, responsive glassmorphism UI, and role-based permissions.',
+                'image_path' => 'https://i.ibb.co/TxHth3Vx/Screenshot-2025-05-22-at-16-22-13.png',
+                'category' => 'fullstack',
+                'technologies' => ['Laravel 12.x', 'PHP 8.2+', 'SQLite', 'Blade', 'Alpine.js', 'Tailwind CSS', 'Vite', 'Heroicons'],
+                'github_url' => 'https://github.com/kildcn/task-management-app',
+                'live_url' => null,
+                'featured' => true,
+                'display_order' => 12
             ]
         ];
 
